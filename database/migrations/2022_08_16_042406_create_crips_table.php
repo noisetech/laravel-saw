@@ -15,6 +15,9 @@ class CreateCripsTable extends Migration
     {
         Schema::create('crips', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('kriteria_id');
+            $table->string('nama_crips');
+            $table->integer('bobot');
             $table->timestamps();
         });
     }

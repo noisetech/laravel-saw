@@ -15,9 +15,7 @@ class CreateAlternatifsTable extends Migration
     {
         Schema::create('alternatifs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('kriteria_id');
-            $table->string('nama_crips');
-            $table->integer('bobot');
+            $table->string('nama_alternatif');
             $table->timestamps();
         });
     }
