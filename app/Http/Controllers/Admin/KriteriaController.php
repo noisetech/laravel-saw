@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Crips;
 use App\Http\Controllers\Controller;
 use App\Kriteria;
 use Illuminate\Http\Request;
@@ -32,9 +33,11 @@ class KriteriaController extends Controller
     }
 
     public function show($id){
+        $crips = Crips::where('kriteria_id', $id)->get();
         $item = Kriteria::find($id);
 
         return view('pages.kriteria.show', [
+            'crips' => $crips,
             'item' => $item
         ]);
     }

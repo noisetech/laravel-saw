@@ -36,7 +36,12 @@ class CripsController extends Controller
      */
     public function store(Request $request)
     {
-        $crips = new Crips();
+        $data = $request->all();
+
+        Crips::create($data);
+
+        return redirect()->route('crips.index')
+            ->with('status', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -58,7 +63,11 @@ class CripsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Crips::find($id);
+
+        return view('pages.crips.edit', [
+            'item' => $item
+        ]);
     }
 
     /**
@@ -70,7 +79,14 @@ class CripsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $item = Crips::find($id);
+
+        $data = $request->all();
+
+        $item->update($data);
+
+        return redirect()->route('crips.index')
+            ->with('status', 'Data berhasil diubah');
     }
 
     /**
@@ -81,6 +97,10 @@ class CripsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = Crips::find($id);
+
+        $item->delete();
+
+        $item = Crips::find($id);
     }
 }
